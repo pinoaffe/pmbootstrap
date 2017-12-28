@@ -17,7 +17,7 @@ deviceinfo_screen_width="540"
 deviceinfo_screen_height="960"
 deviceinfo_dev_touchscreen=""
 deviceinfo_dev_keyboard=""
-deviceinfo_msm_refresher="true"
+deviceinfo_msm_refresher="false"
 
 # Bootloader related
 deviceinfo_flash_method="none"
