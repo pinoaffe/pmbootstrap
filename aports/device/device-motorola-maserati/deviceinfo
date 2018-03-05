@@ -23,6 +23,3 @@ deviceinfo_flash_method="none"
 deviceinfo_safestrap_partition="/dev/mmcblk1p25"
 deviceinfo_data_partition="/dev/mmcblk1p24"
 deviceinfo_system_partition="/dev/mmcblk1p20"
-deviceinfo_preinstall_partition="/dev/mmcblk1p22"
-deviceinfo_webtop_partition="/dev/mmcblk1p23"
-
