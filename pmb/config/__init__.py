@@ -411,14 +411,15 @@ newapkbuild_arguments_strings = [
     ["-n", "pkgname", "set package name (only use with SRCURL)"],
     ["-d", "pkgdesc", "set package description"],
     ["-l", "license", "set package license identifier from"
-                      " <https://spdx.org/licenses/>"]
+                      " <https://spdx.org/licenses/>"],
+    ["-u", "url", "set package URL"],
 ]
 newapkbuild_arguments_switches_pkgtypes = [
     ["-a", "autotools", "create autotools package (use ./configure ...)"],
     ["-C", "cmake", "create CMake package (assume cmake/ is there)"],
     ["-m", "meson", "create meson package (assume meson.build is there)"],
     ["-p", "perl", "create perl package (assume Makefile.PL is there)"],
-    ["-y", "python", "create python package (assume setup.py is there)"]
+    ["-y", "python", "create python package (assume setup.py is there)"],
 ]
 newapkbuild_arguments_switches_other = [
     ["-s", "sourceforge", "use sourceforge source URL"],
