@@ -179,7 +179,7 @@ def arguments_newapkbuild(subparser):
     sub.add_argument("pkgname_pkgver_srcurl",
                      metavar="PKGNAME[-PKGVER] | SRCURL",
                      help="set either the package name (optionally with the"
-                     " pkgver at the end, e.g. 'hello-world-1.0') or the"
+                     " PKGVER at the end, e.g. 'hello-world-1.0') or the"
                      " download link to the source archive")
 
 
