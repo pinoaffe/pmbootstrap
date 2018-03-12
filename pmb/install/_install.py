@@ -234,6 +234,25 @@ def setup_keymap(args):
         logging.info("NOTE: No valid keymap specified for device")
 
 
+def setup_hostname(args):
+    """
+    Set the hostname as the device name unless not modified already
+    """
+    suffix = "rootfs_" + args.device
+
+    alpine_hostname = "localhost"
+    new_hostname = args.device
+    hostname = pmb.chroot.root(args, ["cat", "/etc/hostname"], suffix, return_stdout=True)
+    if hostname.strip() == alpine_hostname:
+        pmb.chroot.root(args, ["sh", "-c", "echo '" + new_hostname + "' > /etc/hostname"], suffix)
+
+    alpine_hosts = "127.0.0.1\tlocalhost localhost.localdomain"
+    new_hosts = "127.0.0.1\t" + args.device + " " + args.device + ".localdomain"
+    hosts = pmb.chroot.root(args, ["cat", "/etc/hosts"], suffix, return_stdout=True)
+    if hosts.strip() == alpine_hosts:
+        pmb.chroot.root(args, ["sh", "-c", "echo '" + new_hosts + "' > /etc/hosts"], suffix)
+
+
 def install_system_image(args):
     # Partition and fill image/sdcard
     logging.info("*** (3/5) PREPARE INSTALL BLOCKDEVICE ***")
@@ -376,6 +395,9 @@ def install(args):
 
     # Set timezone
     pmb.chroot.root(args, ["setup-timezone", "-z", args.timezone], suffix)
+
+    # Set the hostname as the device name
+    setup_hostname(args)
 
     if args.android_recovery_zip:
         install_recovery_zip(args)
