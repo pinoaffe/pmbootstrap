@@ -8,11 +8,11 @@ cd "$DIR/.."
 . .travis/common.sh
 
 # pmbootstrap log
-fold_start "pmbootstrap log" "Printing pmbootstrap log file"
+fold_start "log.1" "pmbootstrap log"
 cat ~/.local/var/pmbootstrap/log.txt
-fold_end "pmbootstrap log"
+fold_end "log.1"
 
 # Testsuite log
-fold_start "testsuite log" "Printing testsuite log file"
+fold_start "log.2" "Testsuite log"
 cat ~/.local/var/pmbootstrap/log_testsuite.txt
-fold_end "testsuite log"
+fold_end "log.2"

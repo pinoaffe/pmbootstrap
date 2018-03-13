@@ -8,28 +8,26 @@ cd "$DIR/.."
 . .travis/common.sh
 
 # Static code analysis
-fold_start "static code analysis" "Static code analysis"
+fold_start "static_analysis" "Static code analysis"
 test/static_code_analysis.sh
-fold_end "static code analysis"
+fold_end "static_analysis"
 
 # pmbootstrap init
-fold_start "pmbootstrap init" "Initializing pmbootstrap with defaults"
+fold_start "init" "pmbootstrap init"
 yes "" | ./pmbootstrap.py init
-fold_end "pmbootstrap init"
+fold_end "init"
 
 # pmbootstrap kconfig_check
-fold_start "pmbootstrap kconfig_check" "Checking all kernel configs"
+fold_start "kconfig_check" "pmbootstrap kconfig_check"
 ./pmbootstrap.py kconfig_check
-fold_end "pmbootstrap kconfig_check"
+fold_end "kconfig_check"
 
 # pmbootstrap build --strict
-fold_start "pmbootstrap build --strict" \
-	"Building all changed aports in strict mode"
+fold_start "build" "pmbootstrap build --strict"
 test/check_checksums.py --build
-fold_end "pmbootstrap build --strict"
+fold_end "build"
 
 # Testsuite
-fold_start "testsuite" "Running the testsuite"
+fold_start "testsuite" "Testsuite and code coverage"
 test/testcases_fast.sh --all
 fold_end "testsuite"
-
