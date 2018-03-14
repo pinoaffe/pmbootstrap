@@ -1,0 +1,22 @@
+# Reference: <https://postmarketos.org/devicepkg>
+pkgname="device-xiaomi-santoni"
+pkgdesc="Xiaomi Redmi 4X"
+pkgver=0.1
+pkgrel=0
+url="https://postmarketos.org"
+license="MIT"
+arch="noarch"
+options="!check"
+depends="postmarketos-base linux-xiaomi-santoni mkbootimg mesa-dri-swrast"
+makedepends="devicepkg-dev"
+source="deviceinfo"
+
+build() {
+	devicepkg_build $startdir $pkgname
+}
+
+package() {
+	devicepkg_package $startdir $pkgname
+}
+
+sha512sums="4f2c52ffd9345fa42ed2fa3298e3cd5a86b091c521115075b51c57354b4f4df53df7a4a8093cbf5a566c267a76438103df4bde104a3481eb158494f1825f2aec  deviceinfo"
