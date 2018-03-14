@@ -236,21 +236,12 @@ def setup_keymap(args):
 
 def setup_hostname(args):
     """
-    Set the hostname as the device name unless not modified already
+    Set the hostname and update localhost address on /etc/hosts
     """
     suffix = "rootfs_" + args.device
-
-    alpine_hostname = "localhost"
-    new_hostname = args.device
-    hostname = pmb.chroot.root(args, ["cat", "/etc/hostname"], suffix, return_stdout=True)
-    if hostname.strip() == alpine_hostname:
-        pmb.chroot.root(args, ["sh", "-c", "echo '" + new_hostname + "' > /etc/hostname"], suffix)
-
-    alpine_hosts = "127.0.0.1\tlocalhost localhost.localdomain"
-    new_hosts = "127.0.0.1\t" + args.device + " " + args.device + ".localdomain"
-    hosts = pmb.chroot.root(args, ["cat", "/etc/hosts"], suffix, return_stdout=True)
-    if hosts.strip() == alpine_hosts:
-        pmb.chroot.root(args, ["sh", "-c", "echo '" + new_hosts + "' > /etc/hosts"], suffix)
+    pmb.chroot.root(args, ["sh", "-c", "echo '" + args.hostname + "' > /etc/hostname"], suffix)
+    regex = "s/^127\.0\.0\.1.*/127.0.0.1\t" + args.hostname + " localhost.localdomain localhost/"
+    pmb.chroot.root(args, ["sed", "-i", "-e", regex, "/etc/hosts"], suffix)
 
 
 def install_system_image(args):

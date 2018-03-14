@@ -19,6 +19,7 @@ along with pmbootstrap.  If not, see <http://www.gnu.org/licenses/>.
 import logging
 import glob
 import os
+import re
 
 import pmb.config
 import pmb.helpers.cli
@@ -240,6 +241,27 @@ def ask_for_build_options(args, cfg):
     cfg["pmbootstrap"]["ccache_size"] = answer
 
 
+def ask_for_hostname(args):
+    while True:
+        ret = pmb.helpers.cli.ask(args, "Device hostname (short form, e.g. 'foo')",
+                                  None, args.device, True)
+        # http://en.wikipedia.org/wiki/Hostname#Restrictions_on_valid_host_names
+        # check length
+        if len(ret) > 63:
+            logging.fatal("ERROR: Hostname '" + ret + "' is too long.")
+            continue
+        # check that it only contains valid chars
+        if not re.match("^[0-9a-z-]*$", ret):
+            logging.fatal("ERROR: Hostname must only contain letters (a-z),"
+                          " digits (0-9) or minus signs (-)")
+            continue
+        # check that doesn't begin or end with a minus sign
+        if ret[:1] == "-" or ret[-1:] == "-":
+            logging.fatal("ERROR: Hostname must not begin or end with a minus sign")
+            continue
+        return ret
+
+
 def frontend(args):
     cfg = pmb.config.load(args)
 
@@ -280,6 +302,9 @@ def frontend(args):
 
     # Configure timezone info
     cfg["pmbootstrap"]["timezone"] = ask_for_timezone(args)
+
+    # Hostname
+    cfg["pmbootstrap"]["hostname"] = ask_for_hostname(args)
 
     # Save config
     pmb.config.save(args, cfg)
