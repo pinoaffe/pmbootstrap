@@ -458,7 +458,7 @@ CONFIG_CMDLINE=""
 CONFIG_EFI_STUB=y
 CONFIG_EFI=y
 CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE=y
-CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE_NAMES=""
+CONFIG_BUILD_ARM64_APPENDED_DTB_IMAGE_NAMES="qcom/msm8953-cdp qcom/msm8940-pmi8940-mtp qcom/msm8920-pmi8950-rcm qcom/msm8940-pmi8950-cdp qcom/msm8952-qrd-skum qcom/msm8953-iot-mtp qcom/msm8917-pmi8950-cdp qcom/msm8937-pmi8950-ext-codec-cdp qcom/msm8920-pmi8950-cdp qcom/apq8037-pmi8950-mtp qcom/msm8937-pmi8950-qrd-sku1 qcom/msm8952-cdp qcom/apq8017-pmi8950-mtp qcom/msm8953-ext-codec-rcm qcom/msmcobalt-sim qcom/apq8037-pmi8937-cdp qcom/msm8917-rumi qcom/msm8917-pmi8950-rcm qcom/msm8917-pmi8937-qrd-sku5 qcom/msmcobalt-v2-mtp qcom/msm8940-pmi8937-mtp qcom/msm8917-qgp-tmo qcom/msm8940-pmi8950-rcm qcom/apq8053-cdp qcom/msmcobalt-v2-rumi qcom/apq8053-ext-audio-mtp qcom/msm8920-pmi8937-cdp qcom/msm8937-pmi8950-mtp qcom/msm8917-pmi8937-rcm qcom/msm8940-pmi8937-cdp qcom/apq8037-pmi8937-mtp qcom/msm8920-pmi8937-rcm qcom/msm8917-pmi8937-cdp qcom/apq8053-iot-mtp qcom/msm8953-mtp qcom/msm8937-pmi8937-cdp qcom/msm8952-mtp qcom/msmcobalt-v2-sim qcom/msm8953-sim qcom/msm8937-pmi8950-rcm qcom/msm8920-pmi8940-qrd-sku7 qcom/msm8940-pmi8940-rcm qcom/msmcobalt-rumi qcom/msm8917-pmi8937-qrd-sku5 qcom/msm8937-pmi8937-rcm qcom/msm8937-pmi8937-mtp qcom/msm8940-pmi8950-qrd-sku7 qcom/msm8940-pmi8940-cdp qcom/msmcobalt-v2-cdp qcom/msm8940-pmi8950-mtp qcom/msm8953-qrd-sku3 qcom/msm8920-pmi8950-mtp qcom/msm8937-pmi8950-cdp qcom/msm8940-pmi8950-qrd-sku7_S88536AA2 qcom/msm8940-pmi8950-qrd-sku7 qcom/apq8017-pmi8950-cdp qcom/apq8017-pmi8937-cdp qcom/msm8937-pmi8950-qrd-sku1-dvt1 qcom/msm8937-pmi8937-qrd-sku2-dvt1 qcom/msm8940-pmi8950-qrd-sku6 qcom/msm8920-pmi8937-mtp qcom/msm8917-pmi8937-mtp qcom/msmcobalt-mtp qcom/msm8917-pmi8950-ext-codec-cdp qcom/msm8953-cdp-1200p qcom/msm8937-rumi qcom/msm8953-ext-codec-mtp qcom/msm8917-pmi8937-qrd-sku5 qcom/msm8940-pmi8940-qrd-sku7 qcom/msm8952-ext-codec-cdp qcom/msm8953-rcm qcom/msm8940-pmi8950-ext-codec-cdp qcom/apq8017-pmi8937-mtp qcom/apq8037-pmi8950-cdp qcom/msm8940-pmi8937-rcm qcom/msm8917-pmi8950-mtp qcom/msm8953-rumi qcom/apq8053-mtp qcom/msm8937-pmi8937-qrd-sku2"
 CONFIG_DMI=y
 
 #
@@ -3169,7 +3169,7 @@ CONFIG_USB_EHCI_MSM_HSIC=y
 #
 CONFIG_USB_ACM=y
 # CONFIG_USB_PRINTER is not set
-# CONFIG_USB_WDM is not set
+CONFIG_USB_WDM=y
 # CONFIG_USB_TMC is not set
 
 #
@@ -3181,7 +3181,8 @@ CONFIG_USB_ACM=y
 #
 CONFIG_USB_STORAGE=y
 # CONFIG_USB_STORAGE_DEBUG is not set
-# CONFIG_USB_STORAGE_REALTEK is not set
+CONFIG_USB_STORAGE_REALTEK=y
+CONFIG_REALTEK_AUTOPM=y
 CONFIG_USB_STORAGE_DATAFAB=y
 CONFIG_USB_STORAGE_FREECOM=y
 CONFIG_USB_STORAGE_ISD200=y
@@ -3201,7 +3202,10 @@ CONFIG_USB_STORAGE_CYPRESS_ATACB=y
 #
 # CONFIG_USB_MDC800 is not set
 # CONFIG_USB_MICROTEK is not set
-# CONFIG_USBIP_CORE is not set
+CONFIG_USBIP_CORE=y
+# CONFIG_USBIP_VHCI_HCD is not set
+# CONFIG_USBIP_HOST is not set
+# CONFIG_USBIP_DEBUG is not set
 # CONFIG_USB_MUSB_HDRC is not set
 CONFIG_USB_DWC3=y
 # CONFIG_USB_DWC3_HOST is not set
@@ -3226,9 +3230,9 @@ CONFIG_USB_DWC3_MSM=y
 # USB port drivers
 #
 CONFIG_USB_SERIAL=y
-# CONFIG_USB_SERIAL_CONSOLE is not set
-# CONFIG_USB_SERIAL_GENERIC is not set
-# CONFIG_USB_SERIAL_SIMPLE is not set
+CONFIG_USB_SERIAL_CONSOLE=y
+CONFIG_USB_SERIAL_GENERIC=y
+CONFIG_USB_SERIAL_SIMPLE=y
 # CONFIG_USB_SERIAL_AIRCABLE is not set
 # CONFIG_USB_SERIAL_ARK3116 is not set
 # CONFIG_USB_SERIAL_BELKIN is not set
@@ -3347,9 +3351,13 @@ CONFIG_USB_GADGET_STORAGE_NUM_BUFFERS=2
 CONFIG_USB_CI13XXX_MSM=y
 # CONFIG_USB_CI13XXX_MSM_HSIC is not set
 # CONFIG_USB_DUMMY_HCD is not set
+CONFIG_USB_LIBCOMPOSITE=m
+CONFIG_USB_F_UAC2=m
 # CONFIG_USB_CONFIGFS is not set
+# CONFIG_USB_G_ANDROID is not set
 # CONFIG_USB_ZERO is not set
-# CONFIG_USB_AUDIO is not set
+CONFIG_USB_AUDIO=m
+# CONFIG_GADGET_UAC1 is not set
 # CONFIG_USB_ETH is not set
 # CONFIG_USB_G_NCM is not set
 # CONFIG_USB_GADGETFS is not set
@@ -3964,6 +3972,7 @@ CONFIG_FS_MBCACHE=y
 # CONFIG_JFS_FS is not set
 # CONFIG_XFS_FS is not set
 # CONFIG_GFS2_FS is not set
+# CONFIG_OCFS2_FS is not set
 # CONFIG_BTRFS_FS is not set
 # CONFIG_NILFS2_FS is not set
 CONFIG_FS_POSIX_ACL=y
@@ -4019,12 +4028,13 @@ CONFIG_TMPFS_POSIX_ACL=y
 CONFIG_TMPFS_XATTR=y
 # CONFIG_HUGETLBFS is not set
 # CONFIG_HUGETLB_PAGE is not set
-# CONFIG_CONFIGFS_FS is not set
+CONFIG_CONFIGFS_FS=y
 CONFIG_MISC_FILESYSTEMS=y
 # CONFIG_ADFS_FS is not set
 # CONFIG_AFFS_FS is not set
 CONFIG_ECRYPT_FS=y
 # CONFIG_ECRYPT_FS_MESSAGING is not set
+# CONFIG_SDCARD_FS is not set
 # CONFIG_HFS_FS is not set
 # CONFIG_HFSPLUS_FS is not set
 # CONFIG_BEFS_FS is not set
@@ -4114,6 +4124,7 @@ CONFIG_NLS_ISO8859_1=y
 # CONFIG_NLS_MAC_ROMANIAN is not set
 # CONFIG_NLS_MAC_TURKISH is not set
 CONFIG_NLS_UTF8=y
+# CONFIG_DLM is not set
 # CONFIG_FILE_TABLE_DEBUG is not set
 # CONFIG_VIRTUALIZATION is not set
 
