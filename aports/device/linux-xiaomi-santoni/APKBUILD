@@ -1,4 +1,4 @@
-# Kernel config based on: arch/arm64/configs/(CHANGEME!)
+# Kernel config based on: arch/arm64/configs/S88536AA2-perf_defconfig
 
 pkgname="linux-xiaomi-santoni"
 pkgver=3.18.31
