@@ -17,6 +17,7 @@ deviceinfo_screen_height="720"
 deviceinfo_msm_refresher="true"
 deviceinfo_dev_touchscreen=""
 deviceinfo_dev_touchscreen_calibration=""
+deviceinfo_dev_touchscreen="/dev/input/event1"
 deviceinfo_dev_keyboard=""
 
 # Bootloader related
