@@ -2,7 +2,7 @@
 pkgname="device-xiaomi-santoni"
 pkgdesc="Xiaomi Redmi 4X"
 pkgver=0.1
-pkgrel=3
+pkgrel=0
 url="https://postmarketos.org"
 license="MIT"
 arch="noarch"
